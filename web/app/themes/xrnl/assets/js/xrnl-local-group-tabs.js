@@ -30,11 +30,18 @@ jQuery(document).ready(function($){
     requestedTab = URLParam;
   }
 
-  // If the About Us section exists, make it active on page load (instead of Contact).
-  if ($('#about-nav').length) {
+  // Show the Contact tab by default on page load
+  // If the About-us section exists, show that instead;
+  // if a specific tab was requested, then show that.
+  if (requestedTab.length) {
+    let navID = ['#', requestedTab, '-nav'].join('');
+    $(navID).tab('show');
+  } else if ($('#about-nav').length) {
     $('#about-nav').tab('show');
+  } else {
+    $('#contact-nav').tab('show');
   }
-
+  
   // Needed to initate the carousel
   if ($('#pictures').length) {
     $('.carousel-item:first').addClass('active');
